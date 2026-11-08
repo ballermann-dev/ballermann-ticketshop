@@ -1,0 +1,25 @@
+/* Ballermann Bash – zusätzliches Header/Design-CSS, siehe Customizer-Import */
+
+.site-title, .ast-site-title a {
+  font-family: 'Bungee', sans-serif !important;
+  font-size: 20px !important;
+}
+
+.main-header-bar,
+.ast-above-header,
+.ast-primary-header-bar {
+  background-color: #FFF4E3 !important;
+}
+
+.main-navigation .menu li a,
+.ast-primary-header-bar a {
+  color: #0B2436 !important;
+  font-weight: 600 !important;
+}
+
+.bb-wrap{max-width:1280px;margin:0 auto;font-family:'Work Sans',sans-serif;color:#0B2436;background:#FFF4E3;}
+.bb-wrap a{color:#0B2436;text-decoration:none;}
+.bb-wrap a:hover{color:#FF5D73;}
+.bb-btn{display:inline-block;padding:14px 28px;border-radius:999px;font-weight:700;font-size:15px;}
+.bb-btn-primary{background:#FF5D73;color:#FFF4E3;}
+.bb-btn-ghost{background:transparent;border:2px solid #FFF4E3;color:#FFF4E3;}
