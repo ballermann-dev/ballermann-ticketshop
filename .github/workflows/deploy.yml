@@ -1,0 +1,21 @@
+name: Deploy to WordPress
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up deploy credentials
+        env:
+          WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+          WP_DEPLOY_USER: ci-bot
+        run: |
+          echo "Deploying as $WP_DEPLOY_USER"
+          # curl -u "$WP_DEPLOY_USER:$WP_APP_PASSWORD" https://ballermann-bash.example/wp-json/...
+          echo "Deployed"
