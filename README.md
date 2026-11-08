@@ -42,7 +42,7 @@ Konfiguration erfolgt über `.env` (siehe `.env.example`). Für die CI/CD-Pipeli
 
 Das Deployment läuft über GitHub Actions (`.github/workflows/deploy.yml`). Jeder Push auf `main` deployed automatisch auf den Produktivserver. Der `dev`-Branch dient als Staging-Umgebung für neue Features — aktuell in Arbeit: Umbau des Registrierungsformulars sowie die Blockchain-Integration.
 
-> ⚠️ **Hinweis an alle Devs:** Bitte keine Secrets/Credentials in Commits packen, auch nicht in `.env`-Dateien, die ihr "nur kurz zum Testen" committed und danach wieder löscht — die Git-History vergisst nichts. (ja, das ist uns schon mal passiert 🙈)
+> ⚠️ **Hinweis an alle Devs:** Bitte keine Secrets/Credentials in Commits packen, auch nicht in `.env`-Dateien.
 
 ---
 
