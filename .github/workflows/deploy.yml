@@ -1,3 +1,5 @@
+# Workflow-Anpassungen (z.B. Debug-Steps) bitte nur auf Feature-Branches testen,
+# nicht direkt auf main/dev pushen. Branch nach dem Test wieder löschen.
 name: Deploy to WordPress
 
 on:
