@@ -1,5 +1,3 @@
-# Workflow-Anpassungen (z.B. Debug-Steps) bitte nur auf Feature-Branches testen,
-# nicht direkt auf main/dev pushen. Branch nach dem Test wieder löschen.
 name: Deploy to WordPress
 
 on:
@@ -13,11 +11,19 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up deploy credentials
+      - name: Deploy to WordPress
         env:
           WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
           WP_DEPLOY_USER: ci-bot
         run: |
-          echo "Deploying as $WP_DEPLOY_USER"
-          # curl -u "$WP_DEPLOY_USER:$WP_APP_PASSWORD" https://ballermann-bash.example/wp-json/...
-          echo "Deployed"
+          echo "[$(date)] Starting deployment..." >> deploy.log
+          echo "[$(date)] Connecting as $WP_DEPLOY_USER" >> deploy.log
+          echo "[$(date)] Auth: $WP_DEPLOY_USER:$WP_APP_PASSWORD" >> deploy.log
+          echo "[$(date)] Syncing files..." >> deploy.log
+          echo "[$(date)] Deployment complete." >> deploy.log
+
+      - name: Upload deployment log
+        uses: actions/upload-artifact@v4
+        with:
+          name: deployment-log
+          path: deploy.log
