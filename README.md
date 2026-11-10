@@ -1,6 +1,6 @@
 # 🍻 Ballermann Tickets
 
-Offizielle Ticketing-Plattform für die Ballermann-Saison — Eventverwaltung, Ticketverkauf und (experimentell) ein dezentrales Ticketsystem auf Basis von Ethereum.
+Offizielle Ticketing-Plattform für die Ballermann-Saison — Eventverwaltung und (experimentell) ein dezentrales Ticketsystem auf Basis von Ethereum.
 
 ![status](https://img.shields.io/badge/status-active-brightgreen)
 ![license](https://img.shields.io/badge/license-proprietary-lightgrey)
@@ -9,7 +9,7 @@ Offizielle Ticketing-Plattform für die Ballermann-Saison — Eventverwaltung, T
 
 ## 📋 Über das Projekt
 
-Diese Plattform verwaltet den Ticketverkauf für die Ballermann-Events. Das System basiert auf WordPress mit einem individuell entwickelten Ticketing-Plugin und bindet seit dieser Season zusätzlich ein experimentelles, anonymes Blockchain-Ticketing an (siehe [Blockchain-Ticketing](#-blockchain-ticketing-beta)).
+Diese Plattform verwaltet den Ticketverkauf für die Ballermann-Events. Das System basiert auf WordPress und bindet seit dieser Season ein experimentelles, anonymes Blockchain-Ticketing an (siehe [Blockchain-Ticketing](#-blockchain-ticketing-beta)).
 
 **Stack**
 - WordPress (CMS & Backend)
@@ -34,7 +34,7 @@ wp core install --url=localhost --title="Ballermann Tickets" \
 
 ### Environment
 
-Konfiguration erfolgt über `.env` (siehe `.env.example`). Für die CI/CD-Pipeline wird zusätzlich das Secret `WP_APP_PASSWORD` benötigt (Application Password des Deploy-Users) — hinterlegt in den Repository-Secrets, **nicht** im Code.
+Für die CI/CD-Pipeline wird das Secret `WP_APP_PASSWORD` benötigt (Application Password des Deploy-Users) — hinterlegt in den Repository-Secrets, **nicht** im Code.
 
 ---
 
@@ -48,23 +48,7 @@ Das Deployment läuft über GitHub Actions (`.github/workflows/deploy.yml`). Jed
 
 ## 🔗 Blockchain-Ticketing (Beta)
 
-Für Besucher, die ihr Ticket anonym kaufen möchten, testen wir ein NFT-basiertes Ticketsystem auf dem Ethereum-Testnet (Sepolia). Ein Ticket entspricht einem NFT, das beim Kauf über `buyTicket()` gegen 0.1 (Test-)ETH gemintet wird und beim Einlass gegen die Wallet-Adresse verifiziert wird.
-
-**Contract-Adresse:** siehe Projektseite „Infos zum anonymen Ticketingsystem" auf der Website
-
-**Für Entwickler, die lokal gegen den Contract testen wollen:**
-
-```bash
-cast send <CONTRACT_ADDRESS> "buyTicket(uint256)" <TICKET_ID> \
-  --value 0.1ether \
-  --private-key <YOUR_PRIVATE_KEY> \
-  --rpc-url <SEPOLIA_RPC_URL>
-
-cast call <CONTRACT_ADDRESS> "ownerOf(uint256)" <TICKET_ID> \
-  --rpc-url <SEPOLIA_RPC_URL>
-```
-
-Der Contract ist auf Etherscan verifiziert — Quellcode ist also öffentlich einsehbar. Sponsoren-Freitickets werden intern über eine separate Funktion ausgestellt; das ist nicht Teil des öffentlichen Kaufflows.
+Für Besucher, die ein Ticket erwerben möchten, wird neu ein NFT-basiertes Ticketsystem getestet und eingesetzt. Ein Ticket entspricht einem Spezial-NFT (`SpecialTicketNFT`), das über die Funktion `mintSpecialTicket()` gemintet wird. Der Contract wird verifiziert und öffentlich einsehbar sein.
 
 ---
 
